@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DisruptiveTech Facial Recognition Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" />
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='lodash.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='immutable.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='axios.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='jquery.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='app.js') }}"
+    ></script>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="http://disruptive-techs.westeurope.cloudapp.azure.com/">About</a>
+    </div>
+
+    <div class="content">
+      <div class="container">
+        <h1>DisruptiveTech Facial Recognition Service</h1><br/>
+        <div class="message"></div>
+        <ul class="tabs">
+          <li data-section="train-content">Kayıt</li>
+          <li data-section="recognize-content">Tanıma</li>
+        </ul>
+
+        <div id="train-content">
+          <form method="post" id="train">
+            <div class="form-item">
+              <label for="input-file">Müşteri Fotoğrafı</label>
+              <input type="file" name="file" id="input-file" accept="image/*" />
+            </div>
+            <div class="form-item">
+              <label>Müşteri Adı</label>
+              <input id="name-field" name="name" value="" type="text" />
+            </div>
+            <div>
+              <button class="button" type="submit">Kaydet</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="recognize-content">
+          <form method="post" id="recognize">
+            <div class="uploadButton">
+              <h3>Fotoğraf Seçiniz</h3><br/>
+              <input
+                type="file"
+                name="file"
+                id="recognize-input-file"
+                accept="image/*"
+              />
+            </div>
+            <br/>
+            <div>
+              <button class="button" type="submit">Bunlar kim?</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <br />
+
+      <hr />
+
+      <div>
+        <div id="manage-content">
+          <form method="post" id="clear">
+            <div>
+              <button class="buttonBottom" type="submit">Tüm verileri temizle</button>
+            </div>
+          </form>
+        </div>
+      
+      </div>
+    </div>
+
+    <div class="footer">
+      <center>
+        <p>DisruptiveTech R&D AR-GE ve Kurumsal Mimari Müdürlüğü</p>
+      </center>
+    </div>
+  </body>
+</html>
