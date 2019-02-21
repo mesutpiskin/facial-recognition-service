@@ -5,6 +5,7 @@ import sys
 import os
 import pickle
 import base64
+import yaml
 
 class Face:
     def __init__(self, app):
@@ -30,15 +31,24 @@ class Face:
         with open('./storage/db/face.data', 'rb') as filehandle:  
             known_face_name_list_local = pickle.load(filehandle)
 
+        with open('config.yaml', 'r') as f:
+            cfg = yaml.load(f)
+
+        # face_rec parameter values from config file
+        val_number_of_times_to_upsample = cfg["number_of_times_to_upsample"]
+        val_model =  cfg["model"]
+        val_num_jitters=  cfg["num_jitters"]
+        val_tolerans=  cfg["tolerans"]
+
         cvframe = cv2.imread(self.load_unknown_file_by_name(unknown_filename))
         small_frame = cv2.resize(cvframe, (0, 0), fx=0.25, fy=0.25)
         small_rgb_frame = small_frame[:, :, ::-1]
 
         # get face location
-        face_locations = face_recognition.face_locations(small_rgb_frame, number_of_times_to_upsample = 1 , model="hog")
+        face_locations = face_recognition.face_locations(small_rgb_frame, number_of_times_to_upsample = val_number_of_times_to_upsample , model= val_model)
 
 
-        face_encodings = face_recognition.face_encodings(small_rgb_frame, face_locations, num_jitters=2)
+        face_encodings = face_recognition.face_encodings(small_rgb_frame, face_locations, num_jitters= val_num_jitters)
 
         # face_encodings = face_recognition.face_encodings (face_image, num_jitters = 100 ) titreme ile doğruluğu arttır
         face_names = []
@@ -78,10 +88,17 @@ class Face:
         for root, dirs, files in os.walk("./storage/trained/"):
             for filename in files:
                 file_result = filename.split("_")
+                if not file_result:
+                    continue
                 customer_name = file_result[0].split(".")
+                if not customer_name:
+                    continue
                 known_face_name_list_local.append(customer_name[0])
                 image = face_recognition.load_image_file("./storage/trained/"+filename)
-                image_face_encoding = face_recognition.face_encodings(image)[0]
+                face_encodings_images = face_recognition.face_encodings(image)
+                if not face_encodings_images:
+                    continue
+                image_face_encoding = face_encodings_images[0]
                 self.known_encoding_faces.append(image_face_encoding)
 
         with open('./storage/db/face.data', 'wb') as filehandle:  

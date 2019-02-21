@@ -133,7 +133,7 @@ $(document).ready(function() {
         message = {
           type: "success",
           message:
-            "<img width='600px' height='500px' src='data:image/png;base64, "+response.data+"'/>"
+            "<img width='720px' height='600px'  src='data:image/png;base64, "+response.data+"'/>"
         };
 
         recognize_data = { file: null };
@@ -176,6 +176,30 @@ $(document).ready(function() {
     e.preventDefault();
   });
 
+  $("#faces").submit(function(e) {
+    // call to backend
+    axios
+      .post("/api/faces")
+      .then(function(response) {
+        message = {
+          type: "success",
+          message: response.data
+        };
+
+    
+
+        update();
+      })
+      .catch(function(err) {
+        message = {
+          type: "error",
+          message: _.get(err, "response.data.error.message", "Hata")
+        };
+       
+        update();
+      });
+    e.preventDefault();
+  });
   // render the app;
   render();
 });

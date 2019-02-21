@@ -2,7 +2,11 @@
 <html>
   <head>
     <title>DisruptiveTech Facial Recognition Service</title>
-    <link href="https://www.kuveytturk.com.tr/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+      href="https://www.kuveytturk.com.tr/favicon.ico"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" />
     <script
       type="text/javascript"
@@ -27,12 +31,31 @@
   </head>
   <body>
     <div class="topnav">
-      <a href="http://disruptive-techs.westeurope.cloudapp.azure.com/">About</a>
+      <div class="dropdown">
+        <button class="dropbtn">Seçenekler</button>
+        <div class="dropdown-content">
+          <form method="post" id="clear">
+            <div>
+              <button class="buttonBottom" type="submit">
+                Verileri Temizle
+              </button>
+            </div>
+          </form>
+          <form method="post" id="faces">
+            <div>
+              <button class="buttonBottom" type="submit">
+                Kayıtlı Kişiler
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <div class="content">
       <div class="container">
-        <h1>DisruptiveTech Facial Recognition Service</h1><br/>
+        <h1>DisruptiveTech Facial Recognition Service</h1>
+        <br />
         <div class="message"></div>
         <ul class="tabs">
           <li data-section="train-content">Kayıt</li>
@@ -58,7 +81,8 @@
         <div id="recognize-content">
           <form method="post" id="recognize">
             <div class="uploadButton">
-              <h3>Fotoğraf Seçiniz</h3><br/>
+              <h3>Fotoğraf Seçiniz</h3>
+              <br />
               <input
                 type="file"
                 name="file"
@@ -66,7 +90,7 @@
                 accept="image/*"
               />
             </div>
-            <br/>
+            <br />
             <div>
               <button class="button" type="submit">BUL</button>
             </div>
@@ -76,24 +100,11 @@
 
       <br />
 
-      <hr />
-
-      <div>
-        <div id="manage-content">
-          <form method="post" id="clear">
-            <div>
-              <button class="buttonBottom" type="submit">Tüm verileri temizle</button>
-            </div>
-          </form>
-        </div>
-      
+      <div class="footer">
+        <center>
+          <p>DisruptiveTech R&D AR-GE ve Kurumsal Mimari Müdürlüğü</p>
+        </center>
       </div>
-    </div>
-
-    <div class="footer">
-      <center>
-        <p>DisruptiveTech R&D AR-GE ve Kurumsal Mimari Müdürlüğü</p>
-      </center>
     </div>
   </body>
 </html>

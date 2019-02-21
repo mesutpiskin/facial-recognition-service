@@ -6,6 +6,7 @@ from face import Face
 import glob
 import os
 import sys
+import pickle
 
 app = Flask(__name__)
 
@@ -16,7 +17,6 @@ app.face = Face(app)
 
 def success_handle(output, status=200, mimetype='application/json'):
     return Response(output, status=status, mimetype=mimetype)
-
 
 def error_handle(error_message, status=500, mimetype='application/json'):
     return Response(json.dumps({"error": {"message": error_message}}), status=status, mimetype=mimetype)
@@ -120,5 +120,20 @@ def clear_tables_and_datas():
 
     return success_handle("Tüm kayıtlar silindi.", 200)
 
+@app.route('/api/faces', methods=['POST'])
+def users():
+    face_list = []
+    with open('./storage/db/face.data', 'rb') as filehandle:  
+        face_list = pickle.load(filehandle)
+
+    if not face_list:
+       return success_handle("Kayıtlı kişi yok.")
+
+    makeitastring = '<br/>'.join(map(str, face_list))   
+    return success_handle(makeitastring)
+
+
 # Run the app
-app.run()
+if __name__ == '__main__':
+      app.run(host='10.19.55.43', port=80)
+      app.run()
