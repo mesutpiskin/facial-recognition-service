@@ -90,8 +90,7 @@ $(document).ready(function() {
           message = {
             type: "success",
             message:
-              "Training has been done, user with id is: " +
-              _.get(response, "data.id")
+              _.get(response, "data")
           };
 
           train_data = { name: "", file: null };
@@ -103,14 +102,14 @@ $(document).ready(function() {
             message: _.get(
               error,
               "response.data.error.message",
-              "Unknown error."
+              "Hata"
             )
           };
 
           update();
         });
     } else {
-      message = { type: "error", message: "Name and face image is required." };
+      message = { type: "error", message: "İsim ve fotoğraf alanı zorunludur." };
     }
 
     update();
@@ -130,16 +129,11 @@ $(document).ready(function() {
     axios
       .post("/api/recognize", recog_form_data)
       .then(function(response) {
-        console.log(
-          "We found a user matched with your face image is",
-          response.data
-        );
 
         message = {
           type: "success",
           message:
-            "We found a user matched with your face image is: " +
-            response.data.user.name
+            "<img width='600px' height='500px' src='data:image/png;base64, "+response.data+"'/>"
         };
 
         recognize_data = { file: null };
@@ -148,7 +142,7 @@ $(document).ready(function() {
       .catch(function(err) {
         message = {
           type: "error",
-          message: _.get(err, "response.data.error.message", "Unknown error")
+          message: _.get(err, "response.data.error.message", "Hata")
         };
 
         update();
@@ -162,14 +156,9 @@ $(document).ready(function() {
     axios
       .post("/api/clear")
       .then(function(response) {
-        console.log(
-          "We found a user matched with your face image is",
-          response.data
-        );
-
         message = {
           type: "success",
-          message: "Your process is " + response.data
+          message: response.data
         };
 
     
@@ -179,7 +168,7 @@ $(document).ready(function() {
       .catch(function(err) {
         message = {
           type: "error",
-          message: _.get(err, "response.data.error.message", "Unknown error")
+          message: _.get(err, "response.data.error.message", "Hata")
         };
        
         update();
