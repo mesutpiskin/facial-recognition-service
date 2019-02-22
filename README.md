@@ -112,7 +112,17 @@ cd realtime
 sudo python3 main.py
 ```
 
+- Face recognize
 <div>
 <img witdh="500px" height="350px" src="./resources/realtimecamera.png"/>
+<br/>
+</div>
+
+
+- Face recognize and masking
+
+
+<div>
+<img witdh="500px" height="350px" src="./resources/mask.png"/>
 
 </div>
