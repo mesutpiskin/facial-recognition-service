@@ -1,4 +1,13 @@
-# Deep Learning Based Face Recognition API Service
+<div>
+
+<center>
+<div>
+<h1> Deep Learning Based Face Recognition API Service</h1>
+<br/>
+<img witdh="250px" height="250px" src="./resources/logo.png"/>
+</div>
+</center>
+</div>
 
 ## What's Deep Learning
 Deep learning is a collection of algorithms used in machine learning, used to model high-level abstractions in data through the use of model architectures, which are composed of multiple nonlinear transformations. It is part of a broad family of methods used for machine learning that are based on learning representations of data.
