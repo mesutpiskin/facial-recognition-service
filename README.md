@@ -1,12 +1,14 @@
 <div>
 
-<center>
-<div>
-<h1> Deep Learning Based Face Recognition API Service</h1>
-<br/>
-<img witdh="250px" height="250px" src="./resources/logo.png"/>
-</div>
-</center>
+
+<p align="center">
+<h1  align="center"> Deep Learning Based Face Recognition API Service</h1>
+<p/>
+
+<p align="center">
+<img  align="center" witdh="250px" height="250px" src="./resources/logo.png"/>
+<p/>
+
 </div>
 
 ## What's Deep Learning
@@ -17,6 +19,16 @@ Facial recognition is a biometric software application capable of uniquely ident
 
 ## Architecture & Tech
 ![Architecture](/resources/mimari.png)
+
+
+### Features
+- Multiple face detection (ML or DL)
+- Multiple face recognition
+- Face masking
+- Face distance calculation
+- Glasses and hat filtering
+- Parallel distance calculation (only Envidia GPU)
+- Face zoom
 
 ### Algorithms
 
