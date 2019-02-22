@@ -18,6 +18,15 @@ Facial recognition is a biometric software application capable of uniquely ident
 ## Architecture & Tech
 ![Architecture](/resources/mimari.png)
 
+### Features
+- Multiple face detection (ML or DL)
+- Multiple face recognition
+- Face masking
+- Face distance calculation
+- Glasses and hat filtering
+- Parallel distance calculation (only Envidia GPU)
+- Face zoom
+
 ### Algorithms
 
 #### K Nearest Neighbors (for face classification)
