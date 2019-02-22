@@ -27,7 +27,7 @@ Facial recognition is a biometric software application capable of uniquely ident
 - Face masking
 - Face distance calculation
 - Glasses and hat filtering
-- Parallel distance calculation (only Envidia GPU)
+- Parallel distance calculation (only Nnvidia GPU)
 - Face zoom
 
 ### Algorithms
