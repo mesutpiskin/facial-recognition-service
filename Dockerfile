@@ -1,10 +1,24 @@
-FROM ubuntu:16.04
-
-MAINTAINER mpiskin
-RUN apt-get install -y python3 python3-dev python3-pip nginx
-COPY ./requirements.txt /app/requirements.txt
+FROM terrillo/python3flask:latest
+    
+# STATIC paths for file.
+# Don't use flask static. Nginx is your friend
+ENV STATIC_URL /static
+ENV STATIC_PATH /app/static
+    
+# Place your flask application on the server
+COPY ./app /app
 WORKDIR /app
-RUN pip3 install -r requirements.txt
-COPY . /app
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+    
+# Install requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+    
+# NGINX setup
+COPY ./nginx.sh /nginx.sh
+RUN chmod +x /nginx.sh
+    
+ENV PYTHONPATH=/app
+    
+ENTRYPOINT ["/nginx.sh"]
+CMD ["/start.sh"]
+    
+EXPOSE 80 443
