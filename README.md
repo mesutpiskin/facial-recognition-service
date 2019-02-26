@@ -6,7 +6,7 @@
 <p/>
 
 <p align="center">
-<img  align="center" witdh="250px" height="250px" src="./resources/logo.png"/>
+<img  align="center" witdh="250px" height="250px" src="./app/resources/logo.png"/>
 <p/>
 
 </div>
@@ -18,7 +18,7 @@ Deep learning is a collection of algorithms used in machine learning, used to mo
 Facial recognition is a biometric software application capable of uniquely identifying or verifying a person by comparing and analyzing patterns based on the person's facial contours. Facial recognition is mostly used for security purposes, though there is increasing interest in other areas of use. In fact, facial recognition technology has received significant attention as it has potential for a wide range of application related to law enforcement as well as other enterprises.
 
 ## Architecture & Tech
-![Architecture](/resources/mimari.png)
+![Architecture](/app/resources/mimari.png)
 
 
 ### Features
@@ -47,7 +47,7 @@ Labeled Faces in the Wild, a database of face photographs designed for studying 
 
 There are now four different sets of LFW images including the original and three different types of "aligned" images. The aligned images include "funneled images" (ICCV 2007), LFW-a, which uses an unpublished method of alignment, and "deep funneled" images (NIPS 2012). Among these, LFW-a and the deep funneled images produce superior results for most face verification algorithms over the original images and over the funneled images (ICCV 2007). 
 
-![Dataset](/resources/dataset.jpg)
+![Dataset](/app/resources/dataset.jpg)
 
 
 ### GPU Computing with CUDA
@@ -90,7 +90,7 @@ goto http://localhost:5000 for web client
 1. Upload the face to be trained and type its name 
 
 <div>
-<img witdh="700px" height="500px" src="./resources/input_image.png"/>
+<img witdh="700px" height="500px" src="./app/resources/input_image.png"/>
 
 </div>
 
@@ -98,7 +98,7 @@ goto http://localhost:5000 for web client
 2. Upload the recognize face
 
 <div>
-<img witdh="700px" height="500px" src="./resources/recognize.png"/>
+<img witdh="700px" height="500px" src="./app/resources/recognize.png"/>
 
 </div>
 
@@ -114,7 +114,7 @@ sudo python3 main.py
 
 - Face recognize
 <div>
-<img witdh="500px" height="350px" src="./resources/realtimecamera.png"/>
+<img witdh="500px" height="350px" src="./app/resources/realtimecamera.png"/>
 <br/>
 </div>
 
@@ -123,6 +123,6 @@ sudo python3 main.py
 
 
 <div>
-<img witdh="500px" height="350px" src="./resources/mask.png"/>
+<img witdh="500px" height="350px" src="./app/resources/mask.png"/>
 
 </div>
