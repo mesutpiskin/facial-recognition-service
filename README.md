@@ -126,3 +126,19 @@ sudo python3 main.py
 <img witdh="500px" height="350px" src="./app/resources/mask.png"/>
 
 </div>
+
+## Run with Docker
+
+Donwload and run docker container.
+
+```bash
+docker pull mesutpiskin/face_recognition_service
+docker run -d -p 5000:5000 mesutpiskin/face_recognition_service:latest
+```bash
+
+and go http://127.0.0.1:5000/
+
+That's it.
+
+
+
