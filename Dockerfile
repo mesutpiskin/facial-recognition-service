@@ -41,7 +41,6 @@ RUN cd ~ && \
     cd  dlib/ && \
     python3 setup.py install --yes USE_AVX_INSTRUCTIONS
 
-
 # Install requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
     
