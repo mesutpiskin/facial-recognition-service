@@ -1,5 +1,6 @@
-Flask==1.0.2
+face_recognition==1.2.3
 Werkzeug==0.14.1
 opencv_python==3.4.2.17
-face_recognition==1.2.3
+Flask==1.0.2
 Pillow==5.4.1
+PyYAML==3.13
