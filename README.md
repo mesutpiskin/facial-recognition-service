@@ -129,12 +129,12 @@ sudo python3 main.py
 
 ## Run with Docker
 
-Donwload and run docker container.
+Download and run docker container.
 
 ```bash
 docker pull mesutpiskin/face_recognition_service
 docker run -d -p 5000:5000 mesutpiskin/face_recognition_service:latest
-```bash
+```
 
 and go http://127.0.0.1:5000/
 
