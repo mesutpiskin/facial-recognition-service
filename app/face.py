@@ -16,8 +16,6 @@ class Face:
         self.train_dataset()
         self.known_face_name_list = []
 
-
-
     def load_train_file_by_name(self, name):
         trained_storage = path.join(self.storage, 'trained')
         return path.join(trained_storage, name)
@@ -31,8 +29,16 @@ class Face:
         with open('./storage/db/face.data', 'rb') as filehandle:  
             known_face_name_list_local = pickle.load(filehandle)
 
+        if not known_face_name_list_local:
+            print("facedata içerisinde kayıtlı kişi yok", file=sys.stdout)
+            return ""
+
         with open('config.yaml', 'r') as f:
             cfg = yaml.load(f)
+
+        if not cfg:
+            print("Config hatası", file=sys.stdout)
+            return ""
 
         # face_rec parameter values from config file
         val_number_of_times_to_upsample = cfg["number_of_times_to_upsample"]
@@ -64,6 +70,11 @@ class Face:
                 
             print("Detected face: " + name, file=sys.stdout)
             face_names.append(name)
+
+        
+        if not face_names:
+            print("Yüz verisi bulunamadı", file=sys.stdout)
+            return ""
 
         # draw name
         result_frame = self.draw_rectangle_on_image(cvframe, face_locations, face_names)
