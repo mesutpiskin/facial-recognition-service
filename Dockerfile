@@ -45,13 +45,5 @@ RUN cd ~ && \
 # Install requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
     
-# NGINX setup
-COPY ./nginx.sh /nginx.sh
-RUN chmod +x /nginx.sh
-    
-ENV PYTHONPATH=/app
-    
-ENTRYPOINT ["/nginx.sh"]
-CMD ["/start.sh"]
-    
-EXPOSE 80 443
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
