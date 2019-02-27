@@ -41,7 +41,7 @@ def train():
 
     if 'file' not in request.files:
 
-        print ("Yüz içeren bir fotoğraf yüklemelisiniz.")
+        print ("Yüz içeren bir fotoğraf yüklemelisiniz.", file=sys.stdout)
         return error_handle("Yüz içeren bir fotoğraf yüklemelisiniz.")
     else:
 
@@ -50,16 +50,16 @@ def train():
 
         if file.mimetype not in app.config['file_allowed']:
 
-            print("File extension is not allowed")
+            print("File extension is not allowed", file=sys.stdout)
             return error_handle("Desteklenmeyen uzantı, yalnızca *.png ve *.jpg")
         else:
 
             # get name in form data
             name = request.form['name']
 
-            print("Kayıt adı: ", name)
+            print("Kayıt adı: "+ name , file=sys.stdout)
 
-            print("Fotoğraf kaydedildi ", app.config['storage'])
+            print("Fotoğraf kaydedildi "+ app.config['storage'], file=sys.stdout)
             filename = secure_filename(file.filename)
             trained_storage = path.join(app.config['storage'], 'trained')
             file.save(path.join(trained_storage, filename))
