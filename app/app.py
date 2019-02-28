@@ -71,6 +71,13 @@ def train():
             new_file = os.path.join(trained_storage, new_file_name)
             os.rename(old_file, new_file)
 
+            # call search face in image
+            face_result = app.face.search_face_in_image(new_file)
+            if face_result:
+                os.remove(new_file)
+                return error_handle(face_result+"")
+
+
             # start train
             app.face.train_dataset()
 

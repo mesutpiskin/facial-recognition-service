@@ -46,13 +46,16 @@ class Face:
         val_num_jitters=  cfg["num_jitters"]
         val_tolerans=  cfg["tolerans"]
 
+        # image frame
         cvframe = cv2.imread(self.load_unknown_file_by_name(unknown_filename))
         small_frame = cv2.resize(cvframe, (0, 0), fx=0.25, fy=0.25)
         small_rgb_frame = small_frame[:, :, ::-1]
 
         # get face location
         face_locations = face_recognition.face_locations(small_rgb_frame, number_of_times_to_upsample = val_number_of_times_to_upsample , model= val_model)
-
+        if not face_locations:
+           print("Yüz verisi bulunamadı", file=sys.stdout)
+           return 
 
         face_encodings = face_recognition.face_encodings(small_rgb_frame, face_locations, num_jitters= val_num_jitters)
 
@@ -60,7 +63,7 @@ class Face:
         face_names = []
 
         for face_encoding in face_encodings:
-            # results = face_recognition.compare_faces (known_face_encodings, face_encoding, tolerans = 0.5 ) threshold değeri
+            # results = face_recognition.compare_faces (known_face_encodings, face_encoding, tolerans = 0.5 )
             matches = face_recognition.compare_faces(self.known_encoding_faces, face_encoding)
             name = "bilinmeyen"  # default name is not recognized
             
@@ -83,15 +86,6 @@ class Face:
         retval, buffer = cv2.imencode('.jpg', result_frame)
         jpg_as_text = base64.b64encode(buffer)
         return jpg_as_text
-        
-        # result
-        ''' faceNames = ''.join(face_names)
-        count = str(len(face_locations))
-        location = ','.join([str(i) for i in face_locations])
-
-
-        print("---- Recognized Completed ----", file=sys.stdout)
-        return faceNames'''
 
     def train_dataset(self):
         print("---- Training Started ----", file=sys.stdout)
@@ -138,3 +132,33 @@ class Face:
         # write temp image file for lblimage item
         return frame
 
+    # search face in image
+    def search_face_in_image(self, image_path):
+        with open('config.yaml', 'r') as f:
+            cfg = yaml.load(f)
+
+        if not cfg:
+            print("Config hatası", file=sys.stdout)
+            return "Config hatası."
+
+        # face_rec parameter values from config file
+        val_number_of_times_to_upsample = cfg["number_of_times_to_upsample"]
+        val_model =  cfg["model"]
+
+        # image frame
+        cvframe = cv2.imread(image_path)
+        small_frame = cv2.resize(cvframe, (0, 0), fx=0.25, fy=0.25)
+        small_rgb_frame = small_frame[:, :, ::-1]
+
+        # get face location
+        face_locations = face_recognition.face_locations(small_rgb_frame, number_of_times_to_upsample = val_number_of_times_to_upsample , model= val_model)
+        if not face_locations:
+           print("Yüklenen fotoğrafta yüz bulunamadı.", file=sys.stdout)
+           return "Yüklenen fotoğrafta yüz bulunamadı. Başka bir fotoğraf deneyebilir veya sınıflandırıcı parametrelerini değiştirerek sonucu iyileştirebilirsiniz." 
+
+        print(len(face_locations), file=sys.stdout)
+
+        if len(face_locations) > 1 :
+           print("Yüklenen fotoğrafta birden fazla yüz bulundu.", file=sys.stdout)
+           return "Yüklenen fotoğrafta birden fazla yüz bulundu. Lütfen tek bir yüz içeren fotoğraf ile kayıt işlemi yapın." 
+        return  ""

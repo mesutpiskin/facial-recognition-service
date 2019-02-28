@@ -1,4 +1,4 @@
-number_of_times_to_upsample: 2
+number_of_times_to_upsample: 4
 model: hog
-num_jitters: 2
+num_jitters: 4
 tolerans: 0,5
