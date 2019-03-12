@@ -5,8 +5,8 @@ body {
 }
 .message .success {
   padding: 10px;
-  border: 1px solid #82b1ff;
-  color: #82b1ff;
+  border: 1px solid #42bd09;
+  color: #42bd09;
 }
 .message .error {
   padding: 10px;
