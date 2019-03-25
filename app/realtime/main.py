@@ -36,7 +36,7 @@ is_blur = False
 
 def trainFaces():
     print("---- Training Started ----")
-    for root, dirs, files in os.walk("./customers"):
+    for root, dirs, files in os.walk("customers"):
         for filename in files:
             file_result = filename.split("_")
             customer_name=file_result[0].split(".") # mesut_1.png
